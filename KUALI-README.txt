@@ -105,3 +105,12 @@ M       src/java/org/apache/ojb/odmg/oql/OQLParser.java
 M       src/java/org/apache/ojb/odmg/oql/OQLLexer.java
 M       build.xml
 ###########################################################################
+06-19-2015
+
+Synchronized access to loadedHMs Collection since concurrent access under 
+load was causing endless loops within the HashMap implementation when 
+running Java 8. This lead to OOME and StackOverflowErrors, even with
+fairly minor load.
+
+M       src/java/org/apache/ojb/broker/core/PersistenceBrokerThreadMapping.java
+###########################################################################

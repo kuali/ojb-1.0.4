@@ -43,6 +43,7 @@ public class PersistenceBrokerThreadMapping
      * still alive will be cleared.
      */
     private static Collection loadedHMs = new HashSet();
+    private static final Object lock = new Object();
 
     /**
      * The hashmap that maps PBKeys to current brokers for the thread
@@ -65,7 +66,9 @@ public class PersistenceBrokerThreadMapping
             map = new HashMap();
             currentBrokerMap.set(map);
 
-            loadedHMs.add(map);
+            synchronized(lock) {
+                loadedHMs.add(map);
+            }
         }
         else
         {
@@ -106,7 +109,9 @@ public class PersistenceBrokerThreadMapping
             if(map.isEmpty())
             {
                 currentBrokerMap.set(null);
-                loadedHMs.remove(map);
+                synchronized(lock) {
+                    loadedHMs.remove(map);
+                }
             }
         }
     }
@@ -160,12 +165,14 @@ public class PersistenceBrokerThreadMapping
      */
     public static void shutdown()
     {
-        for(Iterator it = loadedHMs.iterator(); it.hasNext();)
-        {
-            ((HashMap) it.next()).clear();
+        synchronized(lock) {
+            for(Iterator it = loadedHMs.iterator(); it.hasNext();)
+            {
+                ((HashMap) it.next()).clear();
+            }
+            loadedHMs.clear();
+            loadedHMs = null;
         }
-        loadedHMs.clear();
-        loadedHMs = null;
         currentBrokerMap = null;
     }
 }
