@@ -8,7 +8,7 @@ package org.odmg;
  * an existing transaction object (by calling <code>join</code>),
  * and that transaction must be open (through a call to <code>begin</code>).
  * All subsequent operations by the thread, including reads, writes, and lock
- * acquisitions, are done under the thread’s current transaction.
+ * acquisitions, are done under the threadâ€™s current transaction.
  * <p>
  * A thread may only operate on its current transaction. For example,
  * a <code>TransactionNotInProgressException</code> is thrown if a thread attempts
