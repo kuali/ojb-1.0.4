@@ -1,0 +1,12 @@
+**/target
+**/bin
+**/dist
+**/.idea
+**/db-ojb-1.0.4-kuali.iml
+**/.DS_Store
+**/Thumbs.db
+target
+bin
+dist
+.idea
+db-ojb-1.0.4-kuali.iml

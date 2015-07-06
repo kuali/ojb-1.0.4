@@ -35,8 +35,8 @@
   </scm>
   <properties>
     <kuali.release.goals>clean</kuali.release.goals>
-    <kuali.compile.target>1.5</kuali.compile.target>
-    <kuali.compile.source>1.5</kuali.compile.source>
+    <kuali.compile.target>1.8</kuali.compile.target>
+    <kuali.compile.source>1.8</kuali.compile.source>
     <kuali.javadoc.report.2>javadoc</kuali.javadoc.report.2>
     <maven.test.skip>true</maven.test.skip>
   </properties>
